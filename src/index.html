@@ -3,10 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accessbility And Responsiveness Demo</title>
+  <title>Accessibility And Responsiveness Demo</title>
   <link rel="stylesheet" href="index.css">
+  <script src="index.js" type="module" defer></script>
 </head>
 <body>
-
+  <re-base>
+    <re-sidenav slot="sidenav">
+      <h2 slot="title">Accessibility and responsiveness</h2>
+      <ul slot="nav-links">
+        <li><a href="#">Nav link 1</a></li>
+        <li><a href="#">Nav link 2</a></li>
+        <li><a href="#">Nav link 3</a></li>
+        <li><a href="#">Nav link 4</a></li>
+      </ul>
+    </re-sidenav>
+    <main slot="main">
+      <section>
+        <header>
+          <h2>Color contrast</h2>
+        </header>
+        <article class="flex-row">
+          <button class="bad-contrast">
+            Bad contrast
+          </button>
+          <button class="good-contrast">
+            Good contrast
+          </button>
+        </article>
+        <ol is="re-rl">
+          <li is="re-rli">
+            https://webaim.org/resources/contrastchecker/
+          </li>
+        </ol>
+      </section>
+    </main>
+  </re-base>
 </body>
 </html>

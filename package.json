@@ -4,7 +4,8 @@
   "description": "A simple project that demonstrates some core concepts regarding accessibility and responsiveness on the web",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "serve src"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/Hazeman28/accessibility-and-responsiveness-on-web/issues"
   },
-  "homepage": "https://github.com/Hazeman28/accessibility-and-responsiveness-on-web#readme"
+  "homepage": "https://github.com/Hazeman28/accessibility-and-responsiveness-on-web#readme",
+  "dependencies": {
+    "serve": "^12.0.1"
+  }
 }

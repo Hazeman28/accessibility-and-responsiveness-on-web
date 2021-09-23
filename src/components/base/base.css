@@ -1,0 +1,25 @@
+#base {
+  display: grid;
+  grid-template-columns: repeat(2, 100vw);
+  scroll-snap-type: x mandatory;
+  overflow: auto hidden;
+}
+
+#base > *::slotted(*) {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+#base > *:first-child::slotted(*) {
+  scroll-snap-align: start;
+}
+
+#base > *:last-child::slotted(*) {
+  scroll-snap-align: end;
+}
+
+@media screen and (min-width: 32rem) {
+  #base {
+    grid-template-columns: 12.5rem 1fr;
+  }
+}
