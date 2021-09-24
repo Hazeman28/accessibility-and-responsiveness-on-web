@@ -27,13 +27,13 @@ export function formatCustomElementName(name) {
     }).join("")
 }
 
-export function getTemplateFetchParams(templatePath) {
-  return Array.isArray(templatePath)
-    ? templatePath
-    : typeof templatePath === "string"
+export function getTemplateFetchParams(template) {
+  return (Array.isArray(template) || typeof template === "object")
+    ? template
+    : typeof template === "string"
     ? [
-      `./${templatePath.split("/").pop().replace(/\..+$/, ".html")}`,
-      templatePath
+      `./${template.split("/").pop().replace(/\..+$/, ".html")}`,
+      template
     ]
     : [];
 }

@@ -11,8 +11,8 @@
   <app-base>
     <side-nav slot="side-nav">
       <h2 slot="title">Accessibility and responsiveness</h2>
-      <ul slot="nav-links">
-        <li><a href="#">Nav link 1</a></li>
+      <ul is="intersection-observer-list" slot="nav-links">
+        <li is="intersection-observer-li" observe="color-contrast"><a href="#">Nav link 1</a></li>
         <li><a href="#">Nav link 2</a></li>
         <li><a href="#">Nav link 3</a></li>
         <li><a href="#">Nav link 4</a></li>
@@ -20,11 +20,9 @@
     </side-nav>
     <main slot="main">
       <counter-button>Click to count</counter-button>
-      <section>
-        <header>
-          <h2>Color contrast</h2>
-        </header>
-        <article class="flex-row">
+      <demo-section id="color-contrast">
+        <h2 slot="title">Color contrast</h2>
+        <article>
           <button class="bad-contrast">
             Bad contrast
           </button>
@@ -37,7 +35,7 @@
             https://webaim.org/resources/contrastchecker/
           </li>
         </ol>
-      </section>
+      </demo-section>
     </main>
   </app-base>
 </body>

@@ -1,4 +1,3 @@
-import customElement from "../../helpers/custom-element.js";
 import { trimInnerHTML } from "../../helpers/utils.js";
 
 const API_URL = "https://api.citeas.org/product";
@@ -15,7 +14,7 @@ async function fetchCitation(source) {
   }
 }
 
-export default customElement({
+export default {
   extends: "li",
   name: "reference-li",
   init: async (element) => {
@@ -38,4 +37,4 @@ export default customElement({
       element.appendChild(linkElement);
     }
   }
-});
+};

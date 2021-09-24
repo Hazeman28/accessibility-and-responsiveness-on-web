@@ -1,6 +1,4 @@
-import customElement from "../../helpers/custom-element.js";
-
-export default customElement({
+export default {
   init: (element) => {
     const { useAttribute } = element;
 
@@ -17,5 +15,5 @@ export default customElement({
       element.textContent = newValue;
     },
   },
-  templatePath: import.meta.url,
-});
+  template: import.meta.url,
+};

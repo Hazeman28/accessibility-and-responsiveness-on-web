@@ -1,6 +1,6 @@
 import customElement from "../../helpers/custom-element.js";
 
-export default customElement({
+export default {
   extends: "ol",
   name: "reference-list",
-});
+};

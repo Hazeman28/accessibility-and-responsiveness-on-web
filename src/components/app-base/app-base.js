@@ -1,8 +1,13 @@
-import customElement from "../../helpers/custom-element.js";
 import styles from "./app-base.css" assert { type: "css" };
 
-export default customElement({
+export default {
   styles,
   name: "app-base",
-  templatePath: import.meta.url,
-});
+  template: import.meta.url,
+  onConnect: () => {
+    document.body.style.setProperty("overflow-x", "hidden");
+  },
+  onDisconnect: () => {
+    document.body.style.setProperty("overflow-x", "initial");
+  },
+};

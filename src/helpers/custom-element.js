@@ -13,9 +13,9 @@ export async function customElement({
   onConnect,
   onDisconnect,
   styles,
-  templatePath,
+  template,
 }) {
-  const template = await fetchTemplate(...getTemplateFetchParams(templatePath));
+  const elementTemplate = await fetchTemplate(...getTemplateFetchParams(template));
   const customElementName = formatCustomElementName(name || init?.name);
 
   if (!customElementName) {
@@ -35,12 +35,12 @@ export async function customElement({
       if (!baseElement) {
         const shadowRoot = this.attachShadow({ mode: 'open' });
 
-        if (template) {
-          shadowRoot.appendChild(template);
+        if (elementTemplate) {
+          shadowRoot.appendChild(elementTemplate);
         }
 
         if (styles) {
-          shadowRoot.adoptedStyleSheets = [styles];
+          shadowRoot.adoptedStyleSheets = [styles].flat();
         }
       }
 
