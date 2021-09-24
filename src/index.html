@@ -8,8 +8,8 @@
   <script src="index.js" type="module" defer></script>
 </head>
 <body>
-  <re-base>
-    <re-sidenav slot="sidenav">
+  <app-base>
+    <side-nav slot="side-nav">
       <h2 slot="title">Accessibility and responsiveness</h2>
       <ul slot="nav-links">
         <li><a href="#">Nav link 1</a></li>
@@ -17,8 +17,9 @@
         <li><a href="#">Nav link 3</a></li>
         <li><a href="#">Nav link 4</a></li>
       </ul>
-    </re-sidenav>
+    </side-nav>
     <main slot="main">
+      <counter-button>Click to count</counter-button>
       <section>
         <header>
           <h2>Color contrast</h2>
@@ -31,13 +32,13 @@
             Good contrast
           </button>
         </article>
-        <ol is="re-rl">
-          <li is="re-rli">
+        <ol is="reference-list">
+          <li is="reference-li">
             https://webaim.org/resources/contrastchecker/
           </li>
         </ol>
       </section>
     </main>
-  </re-base>
+  </app-base>
 </body>
 </html>

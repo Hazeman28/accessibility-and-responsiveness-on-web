@@ -1,35 +1,22 @@
 import fetchTemplate from "./fetch-template.js";
+import { useAttribute } from "./hooks.js";
+import { formatCustomElementName, getTemplateFetchParams } from "./utils.js";
 
-const RE_PREFIX = "re-";
-
-function prefixElementName(name, prefix) {
-  const formattedName = name?.toLowerCase().trim();
-  const formattedPrefix = prefix?.endsWith("-") ? prefix : `${prefix}-`;
-
-  if (!formattedName) return formattedName;
-
-  return name?.startsWith(formattedPrefix)
-    ? formattedName
-    : `${formattedPrefix}${formattedName}`;
-}
-
-async function rubiconElement(init, {
+export async function customElement({
   extends: baseElement,
+  init,
   name,
+  observeAttributes,
   observedAttributes,
   onAdopt,
   onAttributeChange,
   onConnect,
   onDisconnect,
-  prefix = RE_PREFIX,
   styles,
-  templatePath = [],
+  templatePath,
 }) {
-  const template = await fetchTemplate(...templatePath);
-
-  const customElementName = name
-    ? prefixElementName(name, prefix)
-    : prefixElementName(init?.name, prefix);
+  const template = await fetchTemplate(...getTemplateFetchParams(templatePath));
+  const customElementName = formatCustomElementName(name || init?.name);
 
   if (!customElementName) {
     throw Error(
@@ -57,6 +44,8 @@ async function rubiconElement(init, {
         }
       }
 
+      this.useAttribute = useAttribute.bind(this);
+
       init?.(this);
     }
 
@@ -72,12 +61,19 @@ async function rubiconElement(init, {
       onAdopt?.(this);
     }
 
-    attributeChangedCallback(args) {
-      onAttributeChange(args);
+    attributeChangedCallback(name, oldValue, newValue) {
+      observeAttributes?.[name]?.(oldValue, newValue, this);
+      onAttributeChange?.(name, oldValue, newValue, this);
     }
 
     static get observedAttributes() {
-      return observedAttributes ?? [];
+      return [
+        ...(observedAttributes ?? []),
+        ...(Object.keys(observeAttributes ?? {}).reduce((attributes, attributeName) => [
+          ...attributes,
+          attributeName
+        ], [])),
+      ];
     }
   }
 
@@ -88,4 +84,4 @@ async function rubiconElement(init, {
   ];
 };
 
-export default rubiconElement;
+export default customElement;

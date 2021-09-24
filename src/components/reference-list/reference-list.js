@@ -1,6 +1,6 @@
-import rubiconElement from "../../helpers/rubicon-element.js";
+import customElement from "../../helpers/custom-element.js";
 
-export default rubiconElement(null, {
+export default customElement({
   extends: "ol",
-  name: "rl",
+  name: "reference-list",
 });
